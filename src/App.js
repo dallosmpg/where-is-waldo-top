@@ -1,6 +1,12 @@
+import React, {useState} from 'react';
 import './App.css';
+
+import Header from './components/Header/Header';
+
+import img1 from './images/wallpaperflare.com_wallpaper.jpg' ;
+
 import { initializeApp } from "firebase/app";
-import { firebaseConfig } from './firebase';
+import { firebaseConfig } from './backend/firebase';
 import {
   firestore,
   getFirestore,
@@ -15,22 +21,16 @@ import {
   doc,
   serverTimestamp,
 } from 'firebase/firestore';
-import img1 from './images/wallpaperflare.com_wallpaper.jpg' ;
-
-// function addToDB() {
-//   console.log('Writing to DB');
-//   addDoc(collection(getFirestore(), 'users'), {
-//     name: 'János',
-//     age: 24,
-//   })
-  
-// }
 
 function App() {
-  const app = initializeApp(firebaseConfig);
+  const [seconds, setSeconds] = useState(0);
+
   return (
-    <img src={img1} alt='test'></img>
-  );
+      <div className='grid-center wrapper'>
+        <Header setSeconds={setSeconds} seconds={seconds} />
+        <img src={img1} alt='test'></img>
+      </div>
+      );
 }
 
 export default App;

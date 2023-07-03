@@ -20,3 +20,9 @@ img {
   width: 100vw;
   height: auto;
 }
+
+.grid-center {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
