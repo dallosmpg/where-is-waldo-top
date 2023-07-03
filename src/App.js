@@ -15,18 +15,21 @@ import {
   doc,
   serverTimestamp,
 } from 'firebase/firestore';
+import img1 from './images/wallpaperflare.com_wallpaper.jpg' ;
 
+// function addToDB() {
+//   console.log('Writing to DB');
+//   addDoc(collection(getFirestore(), 'users'), {
+//     name: 'János',
+//     age: 24,
+//   })
+  
+// }
 
 function App() {
   const app = initializeApp(firebaseConfig);
-
-  // addDoc(collection(getFirestore(), 'users'), {
-  //   name: 'János',
-  //   age: 24,
-  // })
-
   return (
-    <h1>Hello from App</h1>
+    <img src={img1} alt='test'></img>
   );
 }
 
