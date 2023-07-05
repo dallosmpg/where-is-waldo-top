@@ -8,8 +8,8 @@ export default function Header({setSeconds, seconds}) {
 
     return (
         <header>
-            {timer? <Timer setSeconds={setSeconds} seconds={seconds} /> : ''}
-            <button onClick={() => setTimer(!timer)}>Clicl</button>
+            {timer ? <Timer setSeconds={setSeconds} seconds={seconds} /> : ''}
+            <button onClick={() => setTimer(!timer)}>Click!</button>
         </header>
     )
 }

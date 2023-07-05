@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 
 import Header from './components/Header/Header';
+import Gameboard from './components/Gameboard/Gameboard';
 
 import img1 from './images/wallpaperflare.com_wallpaper.jpg' ;
 
@@ -28,7 +29,7 @@ function App() {
   return (
       <div className='grid-center wrapper'>
         <Header setSeconds={setSeconds} seconds={seconds} />
-        <img src={img1} alt='test'></img>
+        <Gameboard gameImage={img1} />
       </div>
       );
 }

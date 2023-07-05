@@ -1,0 +1,18 @@
+.popup-menu {
+    position: absolute;
+
+    border: 3px black solid;
+    border-radius: 0 10px 10px 10px;
+
+    background: white;
+    color: black;
+    font-weight: bold;
+}
+
+.popup-menu ul {
+    padding: 1.5rem;
+}
+
+.popup-menu li {
+    margin: .3rem;
+}
