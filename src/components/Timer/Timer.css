@@ -3,3 +3,18 @@
     font-size: 3.5rem;
     font-weight: bold;
 }
+
+button.red {
+    background-color: red;
+    color: white;
+}
+
+button.green {
+    background-color: green;
+    color: white;
+}
+
+button.green:hover {
+    background-color: rgb(102, 199, 102);
+    color: black;
+}

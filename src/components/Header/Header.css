@@ -10,6 +10,8 @@ header .buttons {
 }
 
 header button {
+    width: 100px;
+
     padding: .5rem 1rem;
     border: none;
     border-radius: 10px;

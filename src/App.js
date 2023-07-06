@@ -6,22 +6,22 @@ import Gameboard from './components/Gameboard/Gameboard';
 
 import img1 from './images/wallpaperflare.com_wallpaper.jpg' ;
 
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from './backend/firebase';
-import {
-  firestore,
-  getFirestore,
-  collection,
-  addDoc,
-  query,
-  orderBy,
-  limit,
-  onSnapshot,
-  setDoc,
-  updateDoc,
-  doc,
-  serverTimestamp,
-} from 'firebase/firestore';
+// import { initializeApp } from "firebase/app";
+// import { firebaseConfig } from './backend/firebase';
+// import {
+//   firestore,
+//   getFirestore,
+//   collection,
+//   addDoc,
+//   query,
+//   orderBy,
+//   limit,
+//   onSnapshot,
+//   setDoc,
+//   updateDoc,
+//   doc,
+//   serverTimestamp,
+// } from 'firebase/firestore';
 
 function App() {
   const [seconds, setSeconds] = useState(0);

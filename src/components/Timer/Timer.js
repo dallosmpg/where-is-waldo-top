@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './Timer.css';
 
-export default function Timer({setSeconds, seconds}) {
+export default function Timer({setSeconds, seconds, isTimerRunning}) {
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds(prevSeconds => prevSeconds + 1);
-    }, 1000);
+    let interval = null;
+
+    if (isTimerRunning) {
+      interval = setInterval(() => {
+        setSeconds(prevSeconds => prevSeconds + 1);
+      }, 1000);
+    }
 
     return () => {
-        setSeconds(0)
-        clearInterval(interval);
+      setSeconds(0);
+      clearInterval(interval);
     };
-  }, []);
-
+  }, [isTimerRunning, setSeconds]);
+  
   const formatTime = time => {
     if (!time) return '00:00'
     const minutes = Math.floor(time / 60);
@@ -21,9 +25,17 @@ export default function Timer({setSeconds, seconds}) {
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  return (
-    <div className='timer'>
-      <p>{formatTime(seconds)}</p>
-    </div>
-  );
+  if (isTimerRunning) {
+    return (
+      <div className='timer'>
+        <p>{formatTime(seconds)}</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className='timer'>
+        <p>00:00</p>
+      </div>
+    )
+  }
 }
