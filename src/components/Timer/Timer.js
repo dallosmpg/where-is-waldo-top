@@ -15,6 +15,7 @@ export default function Timer({setSeconds, seconds}) {
   }, []);
 
   const formatTime = time => {
+    if (!time) return '00:00'
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
@@ -22,7 +23,6 @@ export default function Timer({setSeconds, seconds}) {
 
   return (
     <div className='timer'>
-      <h3>Timer</h3>
       <p>{formatTime(seconds)}</p>
     </div>
   );

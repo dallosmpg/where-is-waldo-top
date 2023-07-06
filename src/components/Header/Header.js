@@ -3,13 +3,15 @@ import './Header.css';
 
 import Timer from "../Timer/Timer";
 
-export default function Header({setSeconds, seconds}) {
-    const [timer, setTimer] = useState(true);
+export default function Header({setSeconds, seconds, isTimerRunning, setIsTimerRunning}) {
 
     return (
-        <header>
-            {timer ? <Timer setSeconds={setSeconds} seconds={seconds} /> : ''}
-            <button onClick={() => setTimer(!timer)}>Click!</button>
+        <header className="flex-center space-around">
+            <div className="buttons">
+                <button>Start</button>
+                <button>Menu</button>
+            </div>
+            <Timer setSeconds={setSeconds} seconds={seconds} />
         </header>
     )
 }

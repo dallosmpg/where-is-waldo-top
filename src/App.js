@@ -25,10 +25,11 @@ import {
 
 function App() {
   const [seconds, setSeconds] = useState(0);
+  const [isTimerRunning, setIsTimerRunning] = useState(false)
 
   return (
       <div className='grid-center wrapper'>
-        <Header setSeconds={setSeconds} seconds={seconds} />
+        <Header isTimerRunning={isTimerRunning} setIsTimerRunning={setIsTimerRunning} setSeconds={setSeconds} seconds={seconds} />
         <Gameboard gameImage={img1} />
       </div>
       );
