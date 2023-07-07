@@ -1,3 +1,11 @@
 .gameboard {
     position: relative;
 }
+
+.gameboard > .solution {
+    position: absolute;
+
+    width: 70px;
+    height: 80px;
+    background-color: red;
+}
