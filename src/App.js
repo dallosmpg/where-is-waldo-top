@@ -25,12 +25,12 @@ import img1 from './images/wallpaperflare.com_wallpaper.jpg' ;
 
 function App() {
   const [seconds, setSeconds] = useState(0);
-  const [isTimerRunning, setIsTimerRunning] = useState(false)
+  const [isGameRunning, setIsGameRunning] = useState(false);
 
   return (
       <div className='grid-center wrapper'>
-        <Header isTimerRunning={isTimerRunning} setIsTimerRunning={setIsTimerRunning} setSeconds={setSeconds} seconds={seconds} />
-        <Gameboard gameImage={img1} />
+        <Header isTimerRunning={isGameRunning} setIsTimerRunning={setIsGameRunning} setSeconds={setSeconds} seconds={seconds} />
+        <Gameboard isGameRunning={isGameRunning} gameImage={img1} />
       </div>
       );
 }
