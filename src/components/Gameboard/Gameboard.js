@@ -3,7 +3,7 @@ import './Gameboard.css';
 
 import Popupmenu from "../Popup menu/Popupmenu";
 
-export default function Gameboard({seconds, setLatestCompletionTime, gameImage, isGameRunning, images, gameImageName, checkIfPlayerFoundCharacter, charactersFound, setCharactersFound, setIsGameRunning}) {
+export default function Gameboard({seconds, setLatestCompletionTime, isGameRunning, images, gameImageName, imageImport, checkIfPlayerFoundCharacter, charactersFound, setCharactersFound, setIsGameRunning}) {
     const [xAxis, setXAxis] = useState(0);
     const [yAxis, setYAxis] = useState(0);
     const [popupIsVisible, setPopupIsVisible] = useState(false);
@@ -31,7 +31,7 @@ export default function Gameboard({seconds, setLatestCompletionTime, gameImage, 
             <img onClick={(e) => {
                 setPopupAxis(e);
                 setPopupVisibility();
-            }} src={gameImage} alt='test'></img>
+            }} src={imageImport[gameImageName]} alt='test'></img>
             {popupIsVisible && isGameRunning ? <Popupmenu setIsGameRunning={setIsGameRunning} charactersFound={charactersFound} setCharactersFound={setCharactersFound} setPopupVisibility={setPopupVisibility} checkIfPlayerFoundCharacter={checkIfPlayerFoundCharacter} gameImageName={gameImageName} images={images} xAxis={xAxis} yAxis={yAxis} /> : ''}
         </div>
     )

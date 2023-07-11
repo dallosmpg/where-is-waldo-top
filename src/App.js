@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 
+import { HashRouter as Router, BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Gameboard from './components/Gameboard/Gameboard';
 
 import images from "./images";
-import waldoSnow from './images/wallpaperflare.com_wallpaper.jpg' ;
+import imageImport from './image_import';
 
 // import { initializeApp } from "firebase/app";
 // import { firebaseConfig } from './backend/firebase';
@@ -29,6 +32,7 @@ function App() {
   const [isGameRunning, setIsGameRunning] = useState(false);
   const [charactersFound, setCharactersFound] = useState([]);
   const [latestCompletionTime, setLatestCompletionTime] = useState(0);
+  const [gameImage, setGameImage] = useState('');
   
   function checkIfPlayerFoundCharacter(clickXAxis, clickYAxis, imgName, charName) {
     const solution = images[imgName].solutions[charName];
@@ -44,10 +48,15 @@ function App() {
   }
 
   return (
-      <div className='grid-center wrapper'>
-        <Header isTimerRunning={isGameRunning} setIsTimerRunning={setIsGameRunning} setSeconds={setSeconds} seconds={seconds} />
-        <Gameboard seconds={seconds} setLatestCompletionTime={setLatestCompletionTime} setIsGameRunning={setIsGameRunning} charactersFound={charactersFound} setCharactersFound={setCharactersFound} checkIfPlayerFoundCharacter={checkIfPlayerFoundCharacter} images={images} isGameRunning={isGameRunning} gameImage={waldoSnow} gameImageName={'waldoSnow'} />
-      </div>
+      <BrowserRouter>
+        <div className='grid-center wrapper'>
+          <Header isTimerRunning={isGameRunning} setIsTimerRunning={setIsGameRunning} setSeconds={setSeconds} seconds={seconds} />
+          <Routes>
+            <Route path='/' element={<Home imageImport={imageImport} setGameImage={setGameImage} images={images} />} />
+            <Route path='/game' element={<Gameboard imageImport={imageImport} seconds={seconds} setLatestCompletionTime={setLatestCompletionTime} setIsGameRunning={setIsGameRunning} charactersFound={charactersFound} setCharactersFound={setCharactersFound} checkIfPlayerFoundCharacter={checkIfPlayerFoundCharacter} images={images} isGameRunning={isGameRunning} gameImage={gameImage} gameImageName={'waldoSnow'} />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
       );
 }
 

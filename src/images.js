@@ -1,7 +1,7 @@
 const images = {
     waldoSnow: {
-        imgSrc: './images/wallpaperflare.com_wallpaper.jpg',
-        charactersOnImg: ['Waldo', 'Odlaw'],
+        imgSrc: 'waldoSnow',
+        charactersOnImg: ['Waldo', 'Odlaw', 'Wizard'],
         solutions: {
             Waldo: {
                 name: 'Waldo',
@@ -16,7 +16,14 @@ const images = {
                 yAxis: 762,
                 xAxisEnd: 621,
                 yAxisEnd: 790,
-            }
+            },
+            Wizard: {
+                name: 'Wizard',
+                xAxis: 120,
+                yAxis: 904,
+                xAxisEnd: 143,
+                yAxisEnd: 944,
+            },
         }
     }
 }

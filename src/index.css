@@ -11,9 +11,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
 img {
@@ -38,6 +38,18 @@ img {
   align-items: center;
 }
 
+.flex-center-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
 .space-around {
   justify-content: space-around;
+}
+
+.img-wrapper {
+  overflow: hidden;
 }
