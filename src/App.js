@@ -32,7 +32,7 @@ function App() {
   const [isGameRunning, setIsGameRunning] = useState(false);
   const [charactersFound, setCharactersFound] = useState([]);
   const [latestCompletionTime, setLatestCompletionTime] = useState(0);
-  const [gameImage, setGameImage] = useState('');
+  const [gameImageName, setGameImageName] = useState('waldoSnow');
   
   function checkIfPlayerFoundCharacter(clickXAxis, clickYAxis, imgName, charName) {
     const solution = images[imgName].solutions[charName];
@@ -52,8 +52,8 @@ function App() {
         <div className='grid-center wrapper'>
           <Header isTimerRunning={isGameRunning} setIsTimerRunning={setIsGameRunning} setSeconds={setSeconds} seconds={seconds} />
           <Routes>
-            <Route path='/' element={<Home imageImport={imageImport} setGameImage={setGameImage} images={images} />} />
-            <Route path='/game' element={<Gameboard imageImport={imageImport} seconds={seconds} setLatestCompletionTime={setLatestCompletionTime} setIsGameRunning={setIsGameRunning} charactersFound={charactersFound} setCharactersFound={setCharactersFound} checkIfPlayerFoundCharacter={checkIfPlayerFoundCharacter} images={images} isGameRunning={isGameRunning} gameImage={gameImage} gameImageName={'waldoSnow'} />} />
+            <Route path='/' element={<Home imageImport={imageImport} setGameImage={setGameImageName} images={images} />} />
+            <Route path='/game' element={<Gameboard imageImport={imageImport} seconds={seconds} setLatestCompletionTime={setLatestCompletionTime} setIsGameRunning={setIsGameRunning} charactersFound={charactersFound} setCharactersFound={setCharactersFound} checkIfPlayerFoundCharacter={checkIfPlayerFoundCharacter} images={images} isGameRunning={isGameRunning}  gameImageName={gameImageName} />} />
           </Routes>
         </div>
       </BrowserRouter>

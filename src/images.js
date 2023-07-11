@@ -26,6 +26,34 @@ const images = {
                 yAxisEnd: 944,
             },
         }
+    },
+    waldoBeach: {
+        imgSrc: 'waldoBeach',
+        level: 2,
+        charactersOnImg: ['Waldo', 'Odlaw', 'Wizard'],
+        solutions: {
+            Waldo: {
+                name: 'Waldo',
+                xAxis: 1174,
+                yAxis: 420,
+                xAxisEnd: 1203,
+                yAxisEnd: 470,
+            },
+            Odlaw: {
+                name: 'Odlaw',
+                xAxis: 200,
+                yAxis: 395,
+                xAxisEnd: 212,
+                yAxisEnd: 440,
+            },
+            Wizard: {
+                name: 'Wizard',
+                xAxis: 513,
+                yAxis: 395,
+                xAxisEnd: 533,
+                yAxisEnd: 433,
+            },
+        }
     }
 }
 

@@ -7,6 +7,7 @@ main {
     width: 100%;
 
     flex-wrap: wrap;
+    gap: 2rem;
 }
 
 .level-card {

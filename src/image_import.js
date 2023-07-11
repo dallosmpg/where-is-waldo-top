@@ -1,4 +1,5 @@
-import img1 from './images/wallpaperflare.com_wallpaper.jpg'
+import waldoSnow from './images/wallpaperflare.com_wallpaper.jpg';
+import waldoBeach from './images/waldoBeach.jpg';
 import waldoUtil from './images/utility/waldo.jpg';
 import odlawUtil from './images/utility/odlaw.jpg';
 import wizardUtil from './images/utility/wizard.jpeg';
@@ -9,8 +10,8 @@ const imageSources = {
         Odlaw: odlawUtil,
         Wizard: wizardUtil
     },
-    waldoSnow: img1,
-
+    waldoSnow: waldoSnow,
+    waldoBeach: waldoBeach,
 }
 
 export default imageSources;
