@@ -1,6 +1,7 @@
 const images = {
     waldoSnow: {
         imgSrc: 'waldoSnow',
+        level: 1,
         charactersOnImg: ['Waldo', 'Odlaw', 'Wizard'],
         solutions: {
             Waldo: {
