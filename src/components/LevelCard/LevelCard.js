@@ -4,11 +4,14 @@ import LevelCardCharacters from "../LevelCardCharacters/LevelCardCharacters";
 import { Link } from "react-router-dom";
 import uniqid from 'uniqid';
 
-export default function LevelCard({setGameImage, imageImport, imgObj, imgKey}) {
+export default function LevelCard({imageImport, imgObj, setGameImageName, setIsGameRunning}) {
 
     return (
-        <Link to="/game" key={uniqid()} onClick={() => setGameImage(imgObj.name)}>
-        <div className="level-card">
+    <Link to="/game" key={uniqid()} >
+        <div className="level-card" onClick={() => {
+            setGameImageName(imgObj.imgSrc);
+            setIsGameRunning(true)
+            }}>
             <div className="img-wrapper">
                 <img alt="Game demonstartion" src={imageImport[imgObj.imgSrc]} />
             </div>

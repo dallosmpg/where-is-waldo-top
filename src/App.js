@@ -50,9 +50,9 @@ function App() {
   return (
       <BrowserRouter>
         <div className='grid-center wrapper'>
-          <Header isTimerRunning={isGameRunning} setIsTimerRunning={setIsGameRunning} setSeconds={setSeconds} seconds={seconds} />
+          <Header isGameRunning={isGameRunning} setIsGameRunning={setIsGameRunning} setSeconds={setSeconds} seconds={seconds} />
           <Routes>
-            <Route path='/' element={<Home imageImport={imageImport} setGameImage={setGameImageName} images={images} />} />
+            <Route path='/' element={<Home setIsGameRunning={setIsGameRunning} imageImport={imageImport} setGameImageName={setGameImageName} images={images} />} />
             <Route path='/game' element={<Gameboard imageImport={imageImport} seconds={seconds} setLatestCompletionTime={setLatestCompletionTime} setIsGameRunning={setIsGameRunning} charactersFound={charactersFound} setCharactersFound={setCharactersFound} checkIfPlayerFoundCharacter={checkIfPlayerFoundCharacter} images={images} isGameRunning={isGameRunning}  gameImageName={gameImageName} />} />
           </Routes>
         </div>

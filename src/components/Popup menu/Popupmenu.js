@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import './Popupmenu.css';
 
+import PopupMenuListItem from "../PopupMenuListItem/PopupMenuListItem";
+
 export default function Popupmenu({xAxis, yAxis, images, gameImageName, checkIfPlayerFoundCharacter, setPopupVisibility, charactersFound, setCharactersFound, setIsGameRunning}) {
 
     useEffect(() => {
@@ -15,20 +17,9 @@ export default function Popupmenu({xAxis, yAxis, images, gameImageName, checkIfP
     const charsOnImgLiItems = images[gameImageName].charactersOnImg.map((char, i) => {
         if(charactersFound.includes(char)) return null;
         return (
-        <li onClick={() => {
-            const playerFoundCharObj = checkIfPlayerFoundCharacter(xAxis, yAxis, gameImageName, char);
-
-            if (playerFoundCharObj.found) {
-                setCharactersFound(prevCharsFound => [...prevCharsFound, playerFoundCharObj.charName])
-            } 
-
-            setPopupVisibility();
-        }} key={i}>
-            
-            {char}
-        </li>
-        ) 
-    })
+            <PopupMenuListItem key={i} checkIfPlayerFoundCharacter={checkIfPlayerFoundCharacter} xAxis={xAxis} yAxis={yAxis} gameImageName={gameImageName} char={char} setCharactersFound={setCharactersFound} setPopupVisibility={setPopupVisibility} />
+        )
+    });
 
     return (
         <div className="popup-menu" style={style}>
@@ -38,3 +29,4 @@ export default function Popupmenu({xAxis, yAxis, images, gameImageName, checkIfP
         </div>
     )
 }
+
