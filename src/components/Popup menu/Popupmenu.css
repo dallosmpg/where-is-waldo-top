@@ -10,9 +10,15 @@
 }
 
 .popup-menu ul {
+    width: 100%;
+
     padding: 1.5rem;
 }
 
 .popup-menu li {
+    width: 100%;
+
+    border-bottom: 1px solid lightgrey;
     margin: .3rem;
+
 }

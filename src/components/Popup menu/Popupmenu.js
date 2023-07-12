@@ -23,7 +23,10 @@ export default function Popupmenu({xAxis, yAxis, images, gameImageName, checkIfP
             } 
 
             setPopupVisibility();
-        }} key={i}>{char}</li>
+        }} key={i}>
+            
+            {char}
+        </li>
         ) 
     })
 
