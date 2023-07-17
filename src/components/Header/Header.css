@@ -8,15 +8,4 @@ header {
 header .buttons {
     gap: 1rem;
 }
-
-header button {
-    width: 100px;
-
-    padding: .5rem 1rem;
-    border: none;
-    border-radius: 10px;
-    margin: 0 .5rem;
-
-    font-size: 1.3rem;
-    font-weight: bold;
-}
+    

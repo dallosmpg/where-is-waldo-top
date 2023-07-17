@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import './Gameboard.css';
 
 import Popupmenu from "../Popup menu/Popupmenu";
+import GameoverInfo from "../GameoverInfo/GameoverInfo";
 
 export default function Gameboard({seconds, setLatestCompletionTime, isGameRunning, images, gameImageName, imageImport, checkIfPlayerFoundCharacter, charactersFound, setCharactersFound, setIsGameRunning}) {
     const [xAxis, setXAxis] = useState(0);
@@ -33,6 +34,7 @@ export default function Gameboard({seconds, setLatestCompletionTime, isGameRunni
                 setPopupVisibility();
             }} src={imageImport[gameImageName]} alt='test'></img>
             {popupIsVisible && isGameRunning ? <Popupmenu setIsGameRunning={setIsGameRunning} charactersFound={charactersFound} setCharactersFound={setCharactersFound} setPopupVisibility={setPopupVisibility} checkIfPlayerFoundCharacter={checkIfPlayerFoundCharacter} gameImageName={gameImageName} images={images} xAxis={xAxis} yAxis={yAxis} /> : ''}
+            <GameoverInfo />
         </div>
     )
 }

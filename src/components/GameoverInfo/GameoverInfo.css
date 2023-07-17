@@ -1,0 +1,28 @@
+.gameover-info {
+    justify-content: space-between;
+
+    box-sizing: border-box;
+    width: 50%;
+    height: 70%;
+    
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    
+    padding: 2rem;
+
+    transform: translate(-50%, -50%);
+    
+    background: black;
+    color: white;
+}
+
+.gameover-info .level {
+    gap: 3rem;
+}
+
+.gameover-info .level .text {
+
+}
+
+
