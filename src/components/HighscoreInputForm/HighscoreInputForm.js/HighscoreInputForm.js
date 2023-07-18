@@ -14,8 +14,8 @@ export default function HighscoreInputForm({addNewHighscoreObject, latestComplet
                 addNewHighscoreObject({
                     name,
                     score: latestCompletionTime,
-                })
-                console.log();
+                });
+                setName('');
             }} className="green">Submit</button>
         </form>
     )

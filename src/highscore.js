@@ -1,11 +1,11 @@
 const highscore = [
     {
         name: 'John',
-        score: 2301,
+        score: 23,
     },
     {
         name: 'Martin',
-        score: 23124,
+        score: 320,
     },
 ]
 export default highscore;

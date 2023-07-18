@@ -1,21 +1,18 @@
 import HighcoreField from '../HighscoreField/HighscoreField';
 import HighscoreInputForm from '../HighscoreInputForm/HighscoreInputForm.js/HighscoreInputForm';
 import highscore from '../../highscore';
-import { useEffect } from 'react';
+import { useState } from 'react';
 
 // TODO Setup highscore form to add new highscore and update the leaderboard with new if in top10;
 
 export default function Highscore({latestCompletionTime}) {
     const NUMBER_OF_HIGHSCORES_SHOWN = 10;
-    let highscoreElements = createHighscoreElements(getTopTenHighscore());
-
-    useEffect(() => {
-        setHighscoreElements();
-    }, [highscore])
+    const  [highscoreElements, setHighscoreElements] = useState(createHighscoreElements(getTopTenHighscore()));
+    const [isHighscoreAdded, setIsHighscoreAdded] = useState(false)
 
     function getTopTenHighscore() {
         return highscore
-        .sort((a, b) => a.score < b.score)
+        .sort((a, b) => a.score > b.score)
         .slice(0, NUMBER_OF_HIGHSCORES_SHOWN + 1)
     }
 
@@ -26,14 +23,11 @@ export default function Highscore({latestCompletionTime}) {
         })   
     }
 
-    function setHighscoreElements() {
-        highscoreElements = createHighscoreElements(getTopTenHighscore());
-        return null;
-    }
-
     function addNewHighscoreObject(highscoreObj) {
+        if (isHighscoreAdded) return;
         highscore.push(highscoreObj);
-        console.log(highscore);
+        setIsHighscoreAdded(true);
+        setHighscoreElements(createHighscoreElements(getTopTenHighscore()));
     }
 
     return (
