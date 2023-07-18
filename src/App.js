@@ -9,23 +9,17 @@ import Gameboard from './components/Gameboard/Gameboard';
 
 import images from "./images";
 import imageImport from './image_import';
+import imageSolutions from './imageSolutions';
 
-// import { initializeApp } from "firebase/app";
-// import { firebaseConfig } from './backend/firebase';
-// import {
-//   firestore,
-//   getFirestore,
-//   collection,
-//   addDoc,
-//   query,
-//   orderBy,
-//   limit,
-//   onSnapshot,
-//   setDoc,
-//   updateDoc,
-//   doc,
-//   serverTimestamp,
-// } from 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from './backend/firebase';
+import {
+  getFirestore,
+  collection,
+  query,
+  getDocs,
+  where,
+} from 'firebase/firestore';
 
 function App() {
   const [seconds, setSeconds] = useState(0);
@@ -34,7 +28,38 @@ function App() {
   const [latestCompletionTime, setLatestCompletionTime] = useState(0);
   const [gameImageName, setGameImageName] = useState('waldoSnow');
   
+  useEffect(() => {
+    async function testFirebase() {
+      try {
+        const db = getFirestore();
+        const imagesCollectionRef = collection(db, 'imageSolutions');
+    
+        // Create a query to get the specific image document based on the image name
+        const q = query(imagesCollectionRef, gameImageName);
+    
+        // Execute the query and get the result
+        const querySnapshot = await getDocs(q);
+    
+        // If the document with the given image name exists, extract the solutions
+        if (!querySnapshot.empty) {
+          const imageData = querySnapshot.docs[0].data();
+          const imageSolutions = imageData.solutions;
+          console.log(imageSolutions);
+          return imageSolutions;
+        } else {
+          console.log(`No document found for image: ${gameImageName}`);
+          return null;
+        }
+      } catch (error) {
+        console.error('Error querying Firestore:', error);
+        return null;
+      }
+    }
+    testFirebase()
+  }, [])
+
   function checkIfPlayerFoundCharacter(clickXAxis, clickYAxis, imgName, charName) {
+
     const solution = images[imgName].solutions[charName];
 
     if ((clickXAxis >= solution.xAxis && clickXAxis <= solution.xAxisEnd) && 
