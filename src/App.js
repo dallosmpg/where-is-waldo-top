@@ -16,9 +16,8 @@ import { firebaseConfig } from './backend/firebase';
 import {
   getFirestore,
   collection,
-  query,
-  getDocs,
-  where,
+  doc,
+  getDoc
 } from 'firebase/firestore';
 
 function App() {
@@ -28,39 +27,27 @@ function App() {
   const [latestCompletionTime, setLatestCompletionTime] = useState(0);
   const [gameImageName, setGameImageName] = useState('waldoSnow');
   
-  useEffect(() => {
-    async function testFirebase() {
-      try {
-        const db = getFirestore();
-        const imagesCollectionRef = collection(db, 'imageSolutions');
-    
-        // Create a query to get the specific image document based on the image name
-        const q = query(imagesCollectionRef, gameImageName);
-    
-        // Execute the query and get the result
-        const querySnapshot = await getDocs(q);
-    
-        // If the document with the given image name exists, extract the solutions
-        if (!querySnapshot.empty) {
-          const imageData = querySnapshot.docs[0].data();
-          const imageSolutions = imageData.solutions;
-          console.log(imageSolutions);
-          return imageSolutions;
-        } else {
-          console.log(`No document found for image: ${gameImageName}`);
-          return null;
-        }
-      } catch (error) {
-        console.error('Error querying Firestore:', error);
+  async function queryImageSolutions(imageName, charName) {
+    try {
+      const db = getFirestore();
+      const imageDocRef = doc(collection(db, 'imageSolutions'), imageName);
+      const imageSnapshot = await getDoc(imageDocRef);
+  
+      if (imageSnapshot.exists()) {
+        const imageData = imageSnapshot.data();
+        return imageData.solutions[charName];
+      } else {
+        console.log(`No image solution found for image: ${imageName}`);
         return null;
       }
+    } catch (error) {
+        console.error('Error querying Firestore:', error);
+        return null;
     }
-    testFirebase()
-  }, [])
+  }
 
-  function checkIfPlayerFoundCharacter(clickXAxis, clickYAxis, imgName, charName) {
-
-    const solution = images[imgName].solutions[charName];
+  async function checkIfPlayerFoundCharacter(clickXAxis, clickYAxis, imgName, charName) {
+    const solution = await queryImageSolutions(imgName, charName);
 
     if ((clickXAxis >= solution.xAxis && clickXAxis <= solution.xAxisEnd) && 
     (clickYAxis >= solution.yAxis && clickYAxis <= solution.yAxisEnd)) {
