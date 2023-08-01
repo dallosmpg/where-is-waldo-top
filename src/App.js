@@ -6,19 +6,13 @@ import { HashRouter as Router, BrowserRouter, Routes, Route } from "react-router
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Gameboard from './components/Gameboard/Gameboard';
+import queryImageSolutions from './backend/imageSolution';
+import { uploadImageHighscoresToFirestore } from './backend/imageHighscore';
 
 import images from "./images";
 import imageImport from './image_import';
 import imageSolutions from './imageSolutions';
-
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from './backend/firebase';
-import {
-  getFirestore,
-  collection,
-  doc,
-  getDoc
-} from 'firebase/firestore';
+import { uploadImageSolutions } from './backend/imageSolution';
 
 function App() {
   const [seconds, setSeconds] = useState(0);
@@ -26,28 +20,13 @@ function App() {
   const [charactersFound, setCharactersFound] = useState([]);
   const [latestCompletionTime, setLatestCompletionTime] = useState(0);
   const [gameImageName, setGameImageName] = useState('waldoSnow');
+
+  uploadImageSolutions(imageSolutions);   
   
-  async function queryImageSolutions(imageName, charName) {
-    try {
-      const db = getFirestore();
-      const imageDocRef = doc(collection(db, 'imageSolutions'), imageName);
-      const imageSnapshot = await getDoc(imageDocRef);
-  
-      if (imageSnapshot.exists()) {
-        const imageData = imageSnapshot.data();
-        return imageData.solutions[charName];
-      } else {
-        console.log(`No image solution found for image: ${imageName}`);
-        return null;
-      }
-    } catch (error) {
-        console.error('Error querying Firestore:', error);
-        return null;
-    }
-  }
 
   async function checkIfPlayerFoundCharacter(clickXAxis, clickYAxis, imgName, charName) {
     const solution = await queryImageSolutions(imgName, charName);
+    console.log(solution);
 
     if ((clickXAxis >= solution.xAxis && clickXAxis <= solution.xAxisEnd) && 
     (clickYAxis >= solution.yAxis && clickYAxis <= solution.yAxisEnd)) {

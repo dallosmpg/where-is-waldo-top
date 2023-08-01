@@ -23,7 +23,6 @@ export default function LevelCard({imageImport, imgObj, setGameImageName, setIsG
             </div>
         </div>
     </Link>
-
     )
 }
 

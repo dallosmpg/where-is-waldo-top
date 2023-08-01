@@ -1,6 +1,5 @@
 const imageSolutions = {
     waldoSnow: {
-        solutions: {
             Waldo: {
                 name: 'Waldo',
                 xAxis: 1606,
@@ -21,11 +20,9 @@ const imageSolutions = {
                 yAxis: 904,
                 xAxisEnd: 143,
                 yAxisEnd: 944,
-            },
         }
     },
     waldoBeach: {
-        solutions: {
             Waldo: {
                 name: 'Waldo',
                 xAxis: 1174,
@@ -48,7 +45,6 @@ const imageSolutions = {
                 yAxisEnd: 433,
             },
         }
-    }
 }
 
 export default imageSolutions;
