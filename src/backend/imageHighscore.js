@@ -11,11 +11,12 @@ import {
 export default async function queryImageHighscore(imageName) {
   try {
     const db = getFirestore();
-    const imageDocRef = doc(collection(db, 'imageSolutions'), imageName);
+    const imageDocRef = doc(collection(db, 'imageHighscores'), imageName);
     const imageSnapshot = await getDoc(imageDocRef);
 
     if (imageSnapshot.exists()) {
-      
+      const highscoreObj = imageSnapshot.data()
+      return highscoreObj.highscores;
     } else {
       console.log(`No image solution found for image: ${imageName}`);
       return null;
@@ -27,18 +28,18 @@ export default async function queryImageHighscore(imageName) {
 
 }
 
-const uploadImageHighscoresToFirestore = async (data) => {
-  try {
-    const db = getFirestore();
+// const uploadImageHighscoresToFirestore = async (data) => {
+//   try {
+//     const db = getFirestore();
 
-    for (const imageName in data) {
-      const imageHighscores = data[imageName];
-      const imageDocRef = doc(collection(db, 'imageHighscores'), imageName);
-      await setDoc(imageDocRef, { highscores: imageHighscores });
-    }
+//     for (const imageName in data) {
+//       const imageHighscores = data[imageName];
+//       const imageDocRef = doc(collection(db, 'imageHighscores'), imageName);
+//       await setDoc(imageDocRef, { highscores: imageHighscores });
+//     }
 
-    console.log('Image highscores uploaded successfully!');
-  } catch (error) {
-    console.error('Error uploading image highscores to Firestore:', error);
-  }
-};
+//     console.log('Image highscores uploaded successfully!');
+//   } catch (error) {
+//     console.error('Error uploading image highscores to Firestore:', error);
+//   }
+// };

@@ -6,7 +6,7 @@ import highscore from '../../highscore';
 
 import { Link } from "react-router-dom";
 
-export default function GameoverInfo({latestCompletionTime, setIsGameRunning, setCharactersFound}) {
+export default function GameoverInfo({latestCompletionTime, setIsGameRunning, setCharactersFound, gameImageName}) {
     function restartGame() {
         setIsGameRunning(true)
         setCharactersFound([])
@@ -24,7 +24,7 @@ export default function GameoverInfo({latestCompletionTime, setIsGameRunning, se
                     <button onClick={restartGame} className="green">Restart level</button>
                 </div>
             </div>
-            <Highscore latestCompletionTime={latestCompletionTime} />
+            <Highscore gameImageName={gameImageName} latestCompletionTime={latestCompletionTime} />
         </div>
     )
 }

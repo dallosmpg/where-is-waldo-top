@@ -32,7 +32,7 @@ export default function Gameboard({seconds, latestCompletionTime, setLatestCompl
                 setPopupVisibility();
             }} src={imageImport[gameImageName]} alt='test'></img>
             {popupIsVisible && isGameRunning ? <Popupmenu setIsGameRunning={setIsGameRunning} charactersFound={charactersFound} setCharactersFound={setCharactersFound} setPopupVisibility={setPopupVisibility} checkIfPlayerFoundCharacter={checkIfPlayerFoundCharacter} gameImageName={gameImageName} images={images} xAxis={xAxis} yAxis={yAxis} /> : ''}
-            {!isGameRunning ? <GameoverInfo setCharactersFound={setCharactersFound} setIsGameRunning={setIsGameRunning} latestCompletionTime={latestCompletionTime} /> : null}
+            {!isGameRunning ? <GameoverInfo gameImageName={gameImageName} setCharactersFound={setCharactersFound} setIsGameRunning={setIsGameRunning} latestCompletionTime={latestCompletionTime} /> : null}
         </div>
     )
 }

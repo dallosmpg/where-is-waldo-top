@@ -37,27 +37,27 @@ export default async function queryImageSolutions(imageName, characterName) {
   }
 }
 
- export async function uploadImageSolutions(imageSolutions) {
-  const collectionName = 'imagesSolutions'
-  try {
-    const firestore = getFirestore();
+//  export async function uploadImageSolutions(imageSolutions) {
+//   const collectionName = 'imagesSolutions'
+//   try {
+//     const firestore = getFirestore();
 
-    // Loop through each image (e.g., waldoSnow, waldoBeach) in the imageSolutions object
-    for (const imageName in imageSolutions) {
-      if (imageSolutions.hasOwnProperty(imageName)) {
-        const imageSolution = imageSolutions[imageName];
+//     // Loop through each image (e.g., waldoSnow, waldoBeach) in the imageSolutions object
+//     for (const imageName in imageSolutions) {
+//       if (imageSolutions.hasOwnProperty(imageName)) {
+//         const imageSolution = imageSolutions[imageName];
 
-        // Create a new document in the Firestore collection for each image
-        const imageDocRef = doc(firestore, collectionName, imageName);
+//         // Create a new document in the Firestore collection for each image
+//         const imageDocRef = doc(firestore, collectionName, imageName);
 
-        // Set the imageSolutions data to the document
-        await setDoc(imageDocRef, imageSolution);
-      }
-    }
+//         // Set the imageSolutions data to the document
+//         await setDoc(imageDocRef, imageSolution);
+//       }
+//     }
 
-    console.log('Image solutions successfully pushed to Firestore!');
-  } catch (error) {
-    console.error('Error pushing image solutions to Firestore:', error);
-  }
-}
+//     console.log('Image solutions successfully pushed to Firestore!');
+//   } catch (error) {
+//     console.error('Error pushing image solutions to Firestore:', error);
+//   }
+// }
   
