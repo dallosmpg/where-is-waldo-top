@@ -12,59 +12,52 @@ import {
 } from 'firebase/firestore';
 
 
-export default async function queryImageSolutions(imageName, charName) {
-  const firestore = getFirestore();
-  const imageSolutionsRef = collection(firestore, 'imageSolutions');
-
+export default async function queryImageSolutions(imageName, characterName) {
+  const collectionName = 'imagesSolutions'
   try {
-    // Query the subcollection based on the image name
-    const querySnapshot = await getDocs(
-      query(imageSolutionsRef, where('name', '==', imageName))
-    );
+    const firestore = getFirestore();
+    const imageDocRef = doc(firestore, collectionName, imageName);
+    const imageDocSnap = await getDoc(imageDocRef);
 
-    // Check if the query has any results
-    if (!querySnapshot.empty) {
-      // Loop through the documents (locations) that match the image name
-      for (const docSnapshot of querySnapshot.docs) {
-        const locationRef = docSnapshot.ref;
+    if (imageDocSnap.exists()) {
+      const imageSolution = imageDocSnap.data();
 
-        // Get the specific character document based on the character name
-        const characterSnapshot = await getDoc(
-          doc(collection(locationRef, 'solutions'), charName)
-        );
-
-        if (characterSnapshot.exists()) {
-          return characterSnapshot.data();
-        }
+      if (imageSolution && imageSolution[characterName]) {
+        const characterSolution = imageSolution[characterName];
+        console.log('Character Solution for', characterName, 'in', imageName, ':', characterSolution);
+        return characterSolution;
+      } else {
+        console.log('Character not found in the specified image.');
       }
+    } else {
+      console.log('Image not found in Firestore.');
     }
-
-    console.log('Character solution not found.');
-    return null;
   } catch (error) {
-    console.error('Error getting character solution:', error);
-    return null;
-  }  }
+    console.error('Error querying image solution:', error);
+  }
+}
 
  export async function uploadImageSolutions(imageSolutions) {
-  const firestore = getFirestore();
-
+  const collectionName = 'imagesSolutions'
   try {
-    // Loop through each location (e.g., waldoSnow, waldoBeach)
-    for (const locationKey in imageSolutions) {
-      const locationRef = doc(firestore, 'imageSolutions', locationKey);
+    const firestore = getFirestore();
 
-      // Loop through each character (e.g., Waldo, Odlaw, Wizard) within the location
-      for (const characterKey in imageSolutions[locationKey]) {
-        const characterData = imageSolutions[locationKey][characterKey];
+    // Loop through each image (e.g., waldoSnow, waldoBeach) in the imageSolutions object
+    for (const imageName in imageSolutions) {
+      if (imageSolutions.hasOwnProperty(imageName)) {
+        const imageSolution = imageSolutions[imageName];
 
-        // Add the character data to Firestore
-        await setDoc(doc(locationRef,  characterKey), characterData);
+        // Create a new document in the Firestore collection for each image
+        const imageDocRef = doc(firestore, collectionName, imageName);
+
+        // Set the imageSolutions data to the document
+        await setDoc(imageDocRef, imageSolution);
       }
     }
 
-    console.log('Data uploaded successfully.');
+    console.log('Image solutions successfully pushed to Firestore!');
   } catch (error) {
-    console.error('Error uploading data:', error);
-  }  }
+    console.error('Error pushing image solutions to Firestore:', error);
+  }
+}
   

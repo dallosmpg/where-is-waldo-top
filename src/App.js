@@ -21,7 +21,7 @@ function App() {
   const [latestCompletionTime, setLatestCompletionTime] = useState(0);
   const [gameImageName, setGameImageName] = useState('waldoSnow');
 
-  uploadImageSolutions(imageSolutions);   
+  // uploadImageSolutions(imageSolutions);   
   
 
   async function checkIfPlayerFoundCharacter(clickXAxis, clickYAxis, imgName, charName) {
