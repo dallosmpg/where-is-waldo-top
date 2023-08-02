@@ -1,5 +1,6 @@
-export default function HighcoreField({highscoreDataObj}) {
+export default function HighscoreField({highscoreDataObj}) {
 
+    // * Return JSX
     return (
         <div className="field flex-center">
             <p>{highscoreDataObj.index + 1}</p>

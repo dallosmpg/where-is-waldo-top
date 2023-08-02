@@ -1,8 +1,10 @@
 import { useState } from "react";
 
 export default function HighscoreInputForm({addNewHighscoreObject, latestCompletionTime}) {
+    // * HighscoreInputForm scores
     const [name, setName] = useState('');
 
+    // * Return JSX
     return (
         <form>
             <div className="field">

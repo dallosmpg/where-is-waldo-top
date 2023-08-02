@@ -1,26 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './Popupmenu.css';
 
+// * Imported components
 import PopupMenuListItem from "../PopupMenuListItem/PopupMenuListItem";
 
-export default function Popupmenu({xAxis, yAxis, images, gameImageName, checkIfPlayerFoundCharacter, setPopupVisibility, charactersFound, setCharactersFound, setIsGameRunning}) {
+export default function Popupmenu({xAxis, yAxis, images, gameImageName, checkIfPlayerFoundCharacter, setPopupVisibility, charactersFound, setCharactersFound}) {
+    // * Popupmenu states
+    const [charsOnImgLiItems, setCharsOnImgLiItems] = useState([]);
+    const [style, setStyle] = useState({})
 
     useEffect(() => {
-        console.log({xAxis, yAxis});
+        // * Set popup's coordinates on page
+        setStyle({
+            left: xAxis,
+            top: yAxis,
+        })
+
+        return () => {
+            setStyle({});
+        }
     }, [])
 
-    const style = {
-        left: xAxis,
-        top: yAxis,
-    }
+    useEffect(() => {
+        // * Update characters appearing based on found characters
+        images[gameImageName].charactersOnImg.forEach((char, i) => {
+            if(charactersFound.includes(char)) return;
+            const listItem = (
+                <PopupMenuListItem key={i} checkIfPlayerFoundCharacter={checkIfPlayerFoundCharacter} xAxis={xAxis} yAxis={yAxis} gameImageName={gameImageName} char={char} setCharactersFound={setCharactersFound} setPopupVisibility={setPopupVisibility} />
+            )
+            setCharsOnImgLiItems(prevCharsOnImgLiItems => [...prevCharsOnImgLiItems, listItem]);
+        });
+    }, [charactersFound])
 
-    const charsOnImgLiItems = images[gameImageName].charactersOnImg.map((char, i) => {
-        if(charactersFound.includes(char)) return null;
-        return (
-            <PopupMenuListItem key={i} checkIfPlayerFoundCharacter={checkIfPlayerFoundCharacter} xAxis={xAxis} yAxis={yAxis} gameImageName={gameImageName} char={char} setCharactersFound={setCharactersFound} setPopupVisibility={setPopupVisibility} />
-        )
-    });
-
+    // * Return JSX
     return (
         <div className="popup-menu" style={style}>
             <ul>
