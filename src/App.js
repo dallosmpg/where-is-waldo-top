@@ -1,33 +1,32 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
+// TODO Revert to HashRouter once project is done! (DevServer supports BrowserRouter, BUT GHPages supports HashRouter!)
 import { HashRouter as Router, BrowserRouter, Routes, Route } from "react-router-dom";
 
+// * Imported components
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Gameboard from './components/Gameboard/Gameboard';
-import queryImageSolutions from './backend/imageSolution';
-import { uploadImageHighscoresToFirestore } from './backend/imageHighscore';
 
+// * Imported dependencies from other files
+import queryImageSolutions from './backend/imageSolution';
 import images from "./images";
 import imageImport from './image_import';
-import imageSolutions from './imageSolutions';
-import { uploadImageSolutions } from './backend/imageSolution';
 
 function App() {
+  // * App states
   const [seconds, setSeconds] = useState(0);
   const [isGameRunning, setIsGameRunning] = useState(false);
   const [charactersFound, setCharactersFound] = useState([]);
   const [latestCompletionTime, setLatestCompletionTime] = useState(0);
-  const [gameImageName, setGameImageName] = useState('waldoSnow');
-
-  // uploadImageSolutions(imageSolutions);   
-  
+  const [gameImageName, setGameImageName] = useState('waldoSnow');  
 
   async function checkIfPlayerFoundCharacter(clickXAxis, clickYAxis, imgName, charName) {
     const solution = await queryImageSolutions(imgName, charName);
     console.log(solution);
 
+    // * Checking if click coordinates are in the solution box -> returning object with result and data
     if ((clickXAxis >= solution.xAxis && clickXAxis <= solution.xAxisEnd) && 
     (clickYAxis >= solution.yAxis && clickYAxis <= solution.yAxisEnd)) {
       console.log(`Found ${charName} on ${imgName}`);
@@ -38,6 +37,7 @@ function App() {
     }
   }
 
+  // * Returned JSX
   return (
       <BrowserRouter>
         <div className='grid-center wrapper'>

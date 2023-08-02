@@ -1,9 +1,12 @@
 import React from "react";
 import './Header.css';
 
+// * React Router link
+import { Link } from "react-router-dom";
+
+// * Imported components
 import Timer from "../Timer/Timer";
 
-import { Link } from "react-router-dom";
 
 export default function Header({setSeconds, seconds, isGameRunning, setIsGameRunning}) {
 
