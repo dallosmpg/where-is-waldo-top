@@ -8,4 +8,13 @@ header {
 header .buttons {
     gap: 1rem;
 }
-    
+
+header button:disabled {
+    background-color: grey;
+    color: black;
+}
+header button:disabled:hover {
+    background-color: grey;
+    color: black;
+
+}

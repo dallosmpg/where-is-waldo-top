@@ -13,7 +13,7 @@ export default function Header({setSeconds, seconds, isGameRunning, setIsGameRun
     return (
         <header className="flex-center space-around">
             <div className="buttons">
-                <button className={isGameRunning ? 'red' : 'green'} onClick={() => setIsGameRunning(prevIsTimerRunning => !prevIsTimerRunning)}>{isGameRunning ? 'Stop' : 'Start'}</button>
+                <button disabled={!isGameRunning} className={isGameRunning ? 'red' : 'green'} onClick={() => setIsGameRunning(prevIsTimerRunning => !prevIsTimerRunning)}>{isGameRunning ? 'Stop' : 'Start'}</button>
                 <Link to={''} onClick={() => setIsGameRunning(false)}><button>Menu</button></Link>
             </div>
             <Timer isTimerRunning={isGameRunning} setSeconds={setSeconds} seconds={seconds}/>
