@@ -1,14 +1,18 @@
 import React from "react";
-import LevelCardCharacters from "../LevelCardCharacters/LevelCardCharacters";
 
+// * NPM dependencies
 import { Link } from "react-router-dom";
 import uniqid from 'uniqid';
+
+// * Imported components
+import LevelCardCharacters from "../LevelCardCharacters/LevelCardCharacters";
 
 export default function LevelCard({imageImport, imgObj, setGameImageName, setIsGameRunning}) {
 
     return (
     <Link to="/game" key={uniqid()} >
         <div className="level-card" onClick={() => {
+            // * Start & setup game
             setGameImageName(imgObj.imgSrc);
             setIsGameRunning(true)
             }}>
