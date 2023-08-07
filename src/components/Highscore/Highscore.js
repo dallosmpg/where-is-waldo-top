@@ -17,7 +17,7 @@ export default function Highscore({latestCompletionTime, gameImageName}) {
     const [isHighscoreAdded, setIsHighscoreAdded] = useState(false);
 
     useEffect(() => {
-        // * On mount, query highscore data and create highscoreFields
+        // * On mount, query highscore data, create highscoreFields and render them
         renderHighscoreElements();
       }, []);
 
@@ -41,11 +41,9 @@ export default function Highscore({latestCompletionTime, gameImageName}) {
     });
     }
     
-    function addNewHighscoreObject(highscoreObj) {
-        console.log({highscoreObj});
+    async function addNewHighscoreObject(highscoreObj) {
         if (isHighscoreAdded) return;
-        // highscore.push(highscoreObj);
-        addHighscoreToImageHighscore(gameImageName ,highscoreObj);
+        await addHighscoreToImageHighscore(gameImageName, highscoreObj);
         setIsHighscoreAdded(true);
         renderHighscoreElements();
     }
