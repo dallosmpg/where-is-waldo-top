@@ -16,5 +16,4 @@ header button:disabled {
 header button:disabled:hover {
     background-color: grey;
     color: black;
-
 }

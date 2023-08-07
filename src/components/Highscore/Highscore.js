@@ -6,7 +6,7 @@ import HighscoreInputForm from '../HighscoreInputForm/HighscoreInputForm.js/High
 
 // * Imported dependencies
 import highscore from '../../highscore';
-import queryImageHighscore from '../../backend/imageHighscore';
+import queryImageHighscore, { addHighscoreToImageHighscore } from '../../backend/imageHighscore';
 
 // TODO Setup highscore form to add new highscore and update the leaderboard with new if in top10;
 
@@ -18,14 +18,15 @@ export default function Highscore({latestCompletionTime, gameImageName}) {
 
     useEffect(() => {
         // * On mount, query highscore data and create highscoreFields
-        async function createHighscoreElements() {
-          const topTenHighscores = await getHighscores(NUMBER_OF_HIGHSCORES_SHOWN);
-          const highscoreElements = createHighscoreElementsFromData(topTenHighscores);
-          setHighscoreElements(highscoreElements);
-        }
-        createHighscoreElements();
+        renderHighscoreElements();
       }, []);
-      
+
+    async function renderHighscoreElements() {
+    const topTenHighscores = await getHighscores(NUMBER_OF_HIGHSCORES_SHOWN);
+    const highscoreElements = createHighscoreElementsFromData(topTenHighscores);
+    setHighscoreElements(highscoreElements);
+    }
+
     async function getHighscores(numOfScores) {
     const highscore = await queryImageHighscore(gameImageName);
     return highscore
@@ -41,10 +42,12 @@ export default function Highscore({latestCompletionTime, gameImageName}) {
     }
     
     function addNewHighscoreObject(highscoreObj) {
+        console.log({highscoreObj});
         if (isHighscoreAdded) return;
-        highscore.push(highscoreObj);
+        // highscore.push(highscoreObj);
+        addHighscoreToImageHighscore(gameImageName ,highscoreObj);
         setIsHighscoreAdded(true);
-        setHighscoreElements(createHighscoreElementsFromData(getHighscores(NUMBER_OF_HIGHSCORES_SHOWN)));
+        renderHighscoreElements();
     }
 
     // * Return JSX

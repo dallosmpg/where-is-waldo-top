@@ -20,8 +20,8 @@ function App() {
   const [isGameRunning, setIsGameRunning] = useState(false);
   const [charactersFound, setCharactersFound] = useState([]);
   const [latestCompletionTime, setLatestCompletionTime] = useState(0);
-  const [gameImageName, setGameImageName] = useState('waldoSnow');  
-
+  const [gameImageName, setGameImageName] = useState('waldoSnow');
+  
   async function checkIfPlayerFoundCharacter(clickXAxis, clickYAxis, imgName, charName) {
     const solution = await queryImageSolutions(imgName, charName);
     console.log(solution);
